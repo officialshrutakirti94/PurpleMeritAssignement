@@ -1,10 +1,17 @@
 from sqlalchemy import create_engine
-from sqlalchemy.orm import declarative_base,sessionmaker
-from dotenv import load_dotenv
+from sqlalchemy.orm import declarative_base, sessionmaker
 import os
-load_dotenv()
-database_url=os.getenv("DATABASE_URL")
-engine=create_engine(url=database_url,pool_pre_ping=True)
+
+DATABASE_URL = os.getenv("DATABASE_URL")
+
+if not DATABASE_URL:
+    raise RuntimeError("DATABASE_URL environment variable is not set")
+
+engine = create_engine(
+    DATABASE_URL,
+    pool_pre_ping=True,
+    connect_args={"sslmode": "require"}
+)
 
 SessionLocal = sessionmaker(
     autocommit=False,
