@@ -1,4 +1,4 @@
-# PurpleMeritAssignement
+# PurpleMeritAssignment
 
 # Full-Stack Authentication & User Management System
 
